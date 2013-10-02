@@ -23,6 +23,7 @@
 		9898BC5517FB69D50052495C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9898BC3117FB69D40052495C /* UIKit.framework */; };
 		9898BC5D17FB69D50052495C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9898BC5B17FB69D50052495C /* InfoPlist.strings */; };
 		9898BC5F17FB69D50052495C /* PlaylistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9898BC5E17FB69D50052495C /* PlaylistTests.m */; };
+		9898BC6A17FB72960052495C /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9898BC6917FB72960052495C /* AddViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		9898BC5A17FB69D50052495C /* PlaylistTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlaylistTests-Info.plist"; sourceTree = "<group>"; };
 		9898BC5C17FB69D50052495C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9898BC5E17FB69D50052495C /* PlaylistTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaylistTests.m; sourceTree = "<group>"; };
+		9898BC6817FB72960052495C /* AddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
+		9898BC6917FB72960052495C /* AddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +123,8 @@
 				9898BC3C17FB69D40052495C /* AppDelegate.h */,
 				9898BC3D17FB69D40052495C /* AppDelegate.m */,
 				9898BC3F17FB69D40052495C /* Main_iPhone.storyboard */,
+				9898BC6817FB72960052495C /* AddViewController.h */,
+				9898BC6917FB72960052495C /* AddViewController.m */,
 				9898BC4217FB69D40052495C /* Main_iPad.storyboard */,
 				9898BC4517FB69D40052495C /* MasterViewController.h */,
 				9898BC4617FB69D40052495C /* MasterViewController.m */,
@@ -258,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9898BC6A17FB72960052495C /* AddViewController.m in Sources */,
 				9898BC3E17FB69D40052495C /* AppDelegate.m in Sources */,
 				9898BC4717FB69D40052495C /* MasterViewController.m in Sources */,
 				9898BC3A17FB69D40052495C /* main.m in Sources */,
@@ -396,11 +402,13 @@
 		9898BC6317FB69D50052495C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Playlist/Playlist-Prefix.pch";
 				INFOPLIST_FILE = "Playlist/Playlist-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -409,11 +417,13 @@
 		9898BC6417FB69D50052495C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Playlist/Playlist-Prefix.pch";
 				INFOPLIST_FILE = "Playlist/Playlist-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
