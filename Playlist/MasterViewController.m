@@ -155,11 +155,16 @@
 }
 
 -(IBAction)done:(UIStoryboardSegue *)segue{
-	AddViewController *sourceVC = [segue sourceViewController];
-	if(sourceVC.theNewTrack){
+	
+	ResultViewController *sourceVC = [segue sourceViewController];
+	
+	if(sourceVC.detailItem){
 		
-		[self insertNewTrack:sourceVC.theNewTrack];
-		//NSLog(@"done: %@", sourceVC.theNewTrack);
+		//[self insertNewTrack:sourceVC.theNewTrack];
+
+		[self insertNewTrack:sourceVC.detailItem];
+		
+//NSLog(@"done: %@", sourceVC.theNewTrack);
 		//[self insertNewTrackWithName:sourceVC.theNewTrack];
 	}
 	//NSLog(@"done");

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AddViewController.h"
+#import "ResultViewController.h"
 #import "Playlist.h"
 #import "Song.h"
 

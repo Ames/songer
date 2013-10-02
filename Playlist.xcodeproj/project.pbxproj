@@ -27,6 +27,8 @@
 		9898BC6D17FBB8A10052495C /* MediaNet.m in Sources */ = {isa = PBXBuildFile; fileRef = 9898BC6C17FBB8A10052495C /* MediaNet.m */; };
 		9898BC7017FC49D70052495C /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 9898BC6F17FC49D70052495C /* Song.m */; };
 		9898BC7317FC4A7E0052495C /* Playlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 9898BC7217FC4A7E0052495C /* Playlist.m */; };
+		9898BC7617FC624C0052495C /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9898BC7517FC624C0052495C /* SearchViewController.m */; };
+		9898BC7917FC63690052495C /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9898BC7817FC63690052495C /* ResultViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,10 @@
 		9898BC6F17FC49D70052495C /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
 		9898BC7117FC4A7E0052495C /* Playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Playlist.h; sourceTree = "<group>"; };
 		9898BC7217FC4A7E0052495C /* Playlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Playlist.m; sourceTree = "<group>"; };
+		9898BC7417FC624C0052495C /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		9898BC7517FC624C0052495C /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		9898BC7717FC63690052495C /* ResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultViewController.h; sourceTree = "<group>"; };
+		9898BC7817FC63690052495C /* ResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +144,10 @@
 				9898BC3C17FB69D40052495C /* AppDelegate.h */,
 				9898BC3D17FB69D40052495C /* AppDelegate.m */,
 				9898BC3F17FB69D40052495C /* Main_iPhone.storyboard */,
+				9898BC7417FC624C0052495C /* SearchViewController.h */,
+				9898BC7517FC624C0052495C /* SearchViewController.m */,
+				9898BC7717FC63690052495C /* ResultViewController.h */,
+				9898BC7817FC63690052495C /* ResultViewController.m */,
 				9898BC6817FB72960052495C /* AddViewController.h */,
 				9898BC6917FB72960052495C /* AddViewController.m */,
 				9898BC4217FB69D40052495C /* Main_iPad.storyboard */,
@@ -281,7 +291,9 @@
 				9898BC7017FC49D70052495C /* Song.m in Sources */,
 				9898BC6A17FB72960052495C /* AddViewController.m in Sources */,
 				9898BC3E17FB69D40052495C /* AppDelegate.m in Sources */,
+				9898BC7917FC63690052495C /* ResultViewController.m in Sources */,
 				9898BC6D17FBB8A10052495C /* MediaNet.m in Sources */,
+				9898BC7617FC624C0052495C /* SearchViewController.m in Sources */,
 				9898BC4717FB69D40052495C /* MasterViewController.m in Sources */,
 				9898BC3A17FB69D40052495C /* main.m in Sources */,
 				9898BC4A17FB69D40052495C /* DetailViewController.m in Sources */,
