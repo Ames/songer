@@ -10,12 +10,15 @@
 
 #import "DetailViewController.h"
 
-@interface MasterViewController () {
-    NSMutableArray *_objects;
-}
-@end
+//@interface MasterViewController () {
+//    NSMutableArray *_objects;
+//}
+//@end
 
 @implementation MasterViewController
+
+
+@synthesize playlist;
 
 - (void)awakeFromNib
 {
@@ -36,6 +39,9 @@
 	//self.navigationItem.rightBarButtonItem = addButton;
 	
 	self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+
+	// create that playlist
+	playlist = [Playlist playlist];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,14 +60,14 @@
 //    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 //}
 
-- (void)insertNewTrackWithName:(NSString *)name{
-	if (!_objects) {
-		_objects = [[NSMutableArray alloc] init];
-	}
+- (void)insertNewTrack:(Song *)song{
+
+	NSUInteger index = playlist.length;
+	
+	[playlist insertSong:song atIndex:index];
 	
 	// woo animation
-	[_objects insertObject:name atIndex:0];
-	NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+	NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
 	[self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
@@ -75,15 +81,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return _objects.count;
+	return playlist.length;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-	NSString *object = _objects[indexPath.row];
-	cell.textLabel.text = [object description];
+	Song *song = [playlist getSongAtIndex:indexPath.row];
+	//NSString *object = _objects[indexPath.row];
+	cell.textLabel.text = song.title;
     return cell;
 }
 
@@ -96,7 +103,8 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
+		[playlist removeSongAtIndex:indexPath.row];
+        //[_objects removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -108,13 +116,15 @@
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
 	
-	NSLog(@"%@",_objects);
+	//NSLog(@"%@",_objects);
 
-	id tmp = _objects[fromIndexPath.row];
-	[_objects removeObjectAtIndex:fromIndexPath.row];
-	[_objects insertObject:tmp atIndex:toIndexPath.row];
+	[playlist moveSongFromIndex:fromIndexPath.row toIndex:toIndexPath.row];
 	
-	NSLog(@"%@",_objects);
+//	id tmp = _objects[fromIndexPath.row];
+//	[_objects removeObjectAtIndex:fromIndexPath.row];
+//	[_objects insertObject:tmp atIndex:toIndexPath.row];
+
+	//NSLog(@"%@",_objects);
 }
 
 
@@ -130,8 +140,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSString *object = _objects[indexPath.row];
-        self.detailViewController.detailItem = object;
+		Song *song = [playlist getSongAtIndex:indexPath.row];
+        self.detailViewController.detailItem = song;
     }
 }
 
@@ -139,8 +149,8 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSString *object = _objects[indexPath.row];
-        [[segue destinationViewController] setDetailItem:object];
+        Song *song = [playlist getSongAtIndex:indexPath.row];
+        [[segue destinationViewController] setDetailItem:song];
     }
 }
 
@@ -148,8 +158,9 @@
 	AddViewController *sourceVC = [segue sourceViewController];
 	if(sourceVC.theNewTrack){
 		
+		[self insertNewTrack:sourceVC.theNewTrack];
 		//NSLog(@"done: %@", sourceVC.theNewTrack);
-		[self insertNewTrackWithName:sourceVC.theNewTrack];
+		//[self insertNewTrackWithName:sourceVC.theNewTrack];
 	}
 	//NSLog(@"done");
 }

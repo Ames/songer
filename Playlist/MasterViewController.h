@@ -8,12 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "AddViewController.h"
+#import "Playlist.h"
+#import "Song.h"
 
 @class DetailViewController;
+
+//@class Playlist;
 
 @interface MasterViewController : UITableViewController
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
+
+@property (strong, nonatomic) Playlist* playlist;
 
 - (IBAction)done:(UIStoryboardSegue *)segue;
 - (IBAction)cancel:(UIStoryboardSegue *)segue;

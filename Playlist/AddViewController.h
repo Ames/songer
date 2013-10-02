@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Song.h"
 
 @interface AddViewController : UIViewController <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
+@property (weak, nonatomic) IBOutlet UITextField *artistField;
 
-@property (nonatomic) NSString *theNewTrack;
+@property (nonatomic) Song *theNewTrack;
 
 @end

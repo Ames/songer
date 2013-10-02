@@ -30,6 +30,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 	
+	// Select the text field on load.
 	[[self nameField] becomeFirstResponder];
 }
 
@@ -41,7 +42,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
 	
-	if(textField==self.nameField){
+	if(textField==self.nameField || textField==self.artistField){
 		[textField resignFirstResponder];
 	}
 	
@@ -49,11 +50,10 @@
 }
 
 
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 	if([[segue identifier] isEqualToString:@"ReturnInput"]){
 		if([self.nameField.text length]){
-			theNewTrack = self.nameField.text;
+			theNewTrack = [Song songWithTitle:self.nameField.text artist:self.artistField.text];
 		}
 	}
 }
