@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9816772717FCB47900BFE87F /* PlaylistAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 9816772617FCB47900BFE87F /* PlaylistAPI.m */; };
+		98167A0F17FD01F000BFE87F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98167A0B17FD01F000BFE87F /* CFNetwork.framework */; };
+		98167A1017FD01F000BFE87F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98167A0C17FD01F000BFE87F /* CoreData.framework */; };
+		98167A1117FD01F000BFE87F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98167A0D17FD01F000BFE87F /* MobileCoreServices.framework */; };
+		98167A1217FD01F000BFE87F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98167A0E17FD01F000BFE87F /* SystemConfiguration.framework */; };
 		9898BC2E17FB69D40052495C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9898BC2D17FB69D40052495C /* Foundation.framework */; };
 		9898BC3017FB69D40052495C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9898BC2F17FB69D40052495C /* CoreGraphics.framework */; };
 		9898BC3217FB69D40052495C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9898BC3117FB69D40052495C /* UIKit.framework */; };
@@ -16,19 +21,18 @@
 		9898BC4117FB69D40052495C /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9898BC3F17FB69D40052495C /* Main_iPhone.storyboard */; };
 		9898BC4417FB69D40052495C /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9898BC4217FB69D40052495C /* Main_iPad.storyboard */; };
 		9898BC4717FB69D40052495C /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9898BC4617FB69D40052495C /* MasterViewController.m */; };
-		9898BC4A17FB69D40052495C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9898BC4917FB69D40052495C /* DetailViewController.m */; };
 		9898BC4C17FB69D40052495C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9898BC4B17FB69D40052495C /* Images.xcassets */; };
 		9898BC5317FB69D50052495C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9898BC5217FB69D50052495C /* XCTest.framework */; };
 		9898BC5417FB69D50052495C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9898BC2D17FB69D40052495C /* Foundation.framework */; };
 		9898BC5517FB69D50052495C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9898BC3117FB69D40052495C /* UIKit.framework */; };
 		9898BC5D17FB69D50052495C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9898BC5B17FB69D50052495C /* InfoPlist.strings */; };
 		9898BC5F17FB69D50052495C /* PlaylistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9898BC5E17FB69D50052495C /* PlaylistTests.m */; };
-		9898BC6A17FB72960052495C /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9898BC6917FB72960052495C /* AddViewController.m */; };
 		9898BC6D17FBB8A10052495C /* MediaNet.m in Sources */ = {isa = PBXBuildFile; fileRef = 9898BC6C17FBB8A10052495C /* MediaNet.m */; };
 		9898BC7017FC49D70052495C /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 9898BC6F17FC49D70052495C /* Song.m */; };
 		9898BC7317FC4A7E0052495C /* Playlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 9898BC7217FC4A7E0052495C /* Playlist.m */; };
 		9898BC7617FC624C0052495C /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9898BC7517FC624C0052495C /* SearchViewController.m */; };
 		9898BC7917FC63690052495C /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9898BC7817FC63690052495C /* ResultViewController.m */; };
+		9898BC7C17FC73A70052495C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9898BC7B17FC73A70052495C /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +46,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9816772517FCB47900BFE87F /* PlaylistAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistAPI.h; sourceTree = "<group>"; };
+		9816772617FCB47900BFE87F /* PlaylistAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistAPI.m; sourceTree = "<group>"; };
+		98167A0B17FD01F000BFE87F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		98167A0C17FD01F000BFE87F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		98167A0D17FD01F000BFE87F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		98167A0E17FD01F000BFE87F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9898BC2A17FB69D40052495C /* Playlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Playlist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9898BC2D17FB69D40052495C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9898BC2F17FB69D40052495C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -56,16 +66,12 @@
 		9898BC4317FB69D40052495C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		9898BC4517FB69D40052495C /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		9898BC4617FB69D40052495C /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		9898BC4817FB69D40052495C /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		9898BC4917FB69D40052495C /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		9898BC4B17FB69D40052495C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9898BC5117FB69D50052495C /* PlaylistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlaylistTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9898BC5217FB69D50052495C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9898BC5A17FB69D50052495C /* PlaylistTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PlaylistTests-Info.plist"; sourceTree = "<group>"; };
 		9898BC5C17FB69D50052495C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9898BC5E17FB69D50052495C /* PlaylistTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaylistTests.m; sourceTree = "<group>"; };
-		9898BC6817FB72960052495C /* AddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
-		9898BC6917FB72960052495C /* AddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
 		9898BC6B17FBB8A10052495C /* MediaNet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaNet.h; sourceTree = "<group>"; };
 		9898BC6C17FBB8A10052495C /* MediaNet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaNet.m; sourceTree = "<group>"; };
 		9898BC6E17FC49D70052495C /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
@@ -76,6 +82,8 @@
 		9898BC7517FC624C0052495C /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		9898BC7717FC63690052495C /* ResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultViewController.h; sourceTree = "<group>"; };
 		9898BC7817FC63690052495C /* ResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultViewController.m; sourceTree = "<group>"; };
+		9898BC7A17FC73A70052495C /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		9898BC7B17FC73A70052495C /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +91,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98167A0F17FD01F000BFE87F /* CFNetwork.framework in Frameworks */,
+				98167A1017FD01F000BFE87F /* CoreData.framework in Frameworks */,
+				98167A1117FD01F000BFE87F /* MobileCoreServices.framework in Frameworks */,
+				98167A1217FD01F000BFE87F /* SystemConfiguration.framework in Frameworks */,
 				9898BC3017FB69D40052495C /* CoreGraphics.framework in Frameworks */,
 				9898BC3217FB69D40052495C /* UIKit.framework in Frameworks */,
 				9898BC2E17FB69D40052495C /* Foundation.framework in Frameworks */,
@@ -124,6 +136,10 @@
 		9898BC2C17FB69D40052495C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				98167A0B17FD01F000BFE87F /* CFNetwork.framework */,
+				98167A0C17FD01F000BFE87F /* CoreData.framework */,
+				98167A0D17FD01F000BFE87F /* MobileCoreServices.framework */,
+				98167A0E17FD01F000BFE87F /* SystemConfiguration.framework */,
 				9898BC2D17FB69D40052495C /* Foundation.framework */,
 				9898BC2F17FB69D40052495C /* CoreGraphics.framework */,
 				9898BC3117FB69D40052495C /* UIKit.framework */,
@@ -135,27 +151,27 @@
 		9898BC3317FB69D40052495C /* Playlist */ = {
 			isa = PBXGroup;
 			children = (
+				9898BC3C17FB69D40052495C /* AppDelegate.h */,
+				9898BC3D17FB69D40052495C /* AppDelegate.m */,
+				9898BC7A17FC73A70052495C /* DetailViewController.h */,
+				9898BC7B17FC73A70052495C /* DetailViewController.m */,
+				9898BC4B17FB69D40052495C /* Images.xcassets */,
+				9898BC4217FB69D40052495C /* Main_iPad.storyboard */,
+				9898BC3F17FB69D40052495C /* Main_iPhone.storyboard */,
+				9816772517FCB47900BFE87F /* PlaylistAPI.h */,
+				9816772617FCB47900BFE87F /* PlaylistAPI.m */,
+				9898BC4517FB69D40052495C /* MasterViewController.h */,
+				9898BC4617FB69D40052495C /* MasterViewController.m */,
 				9898BC6B17FBB8A10052495C /* MediaNet.h */,
 				9898BC6C17FBB8A10052495C /* MediaNet.m */,
 				9898BC7117FC4A7E0052495C /* Playlist.h */,
 				9898BC7217FC4A7E0052495C /* Playlist.m */,
-				9898BC6E17FC49D70052495C /* Song.h */,
-				9898BC6F17FC49D70052495C /* Song.m */,
-				9898BC3C17FB69D40052495C /* AppDelegate.h */,
-				9898BC3D17FB69D40052495C /* AppDelegate.m */,
-				9898BC3F17FB69D40052495C /* Main_iPhone.storyboard */,
-				9898BC7417FC624C0052495C /* SearchViewController.h */,
-				9898BC7517FC624C0052495C /* SearchViewController.m */,
 				9898BC7717FC63690052495C /* ResultViewController.h */,
 				9898BC7817FC63690052495C /* ResultViewController.m */,
-				9898BC6817FB72960052495C /* AddViewController.h */,
-				9898BC6917FB72960052495C /* AddViewController.m */,
-				9898BC4217FB69D40052495C /* Main_iPad.storyboard */,
-				9898BC4517FB69D40052495C /* MasterViewController.h */,
-				9898BC4617FB69D40052495C /* MasterViewController.m */,
-				9898BC4817FB69D40052495C /* DetailViewController.h */,
-				9898BC4917FB69D40052495C /* DetailViewController.m */,
-				9898BC4B17FB69D40052495C /* Images.xcassets */,
+				9898BC7417FC624C0052495C /* SearchViewController.h */,
+				9898BC7517FC624C0052495C /* SearchViewController.m */,
+				9898BC6E17FC49D70052495C /* Song.h */,
+				9898BC6F17FC49D70052495C /* Song.m */,
 				9898BC3417FB69D40052495C /* Supporting Files */,
 			);
 			path = Playlist;
@@ -289,14 +305,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9898BC7017FC49D70052495C /* Song.m in Sources */,
-				9898BC6A17FB72960052495C /* AddViewController.m in Sources */,
 				9898BC3E17FB69D40052495C /* AppDelegate.m in Sources */,
 				9898BC7917FC63690052495C /* ResultViewController.m in Sources */,
 				9898BC6D17FBB8A10052495C /* MediaNet.m in Sources */,
+				9898BC7C17FC73A70052495C /* DetailViewController.m in Sources */,
 				9898BC7617FC624C0052495C /* SearchViewController.m in Sources */,
 				9898BC4717FB69D40052495C /* MasterViewController.m in Sources */,
 				9898BC3A17FB69D40052495C /* main.m in Sources */,
-				9898BC4A17FB69D40052495C /* DetailViewController.m in Sources */,
+				9816772717FCB47900BFE87F /* PlaylistAPI.m in Sources */,
 				9898BC7317FC4A7E0052495C /* Playlist.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -520,6 +536,7 @@
 				9898BC6417FB69D50052495C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9898BC6517FB69D50052495C /* Build configuration list for PBXNativeTarget "PlaylistTests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +545,7 @@
 				9898BC6717FB69D50052495C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

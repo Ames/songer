@@ -35,10 +35,30 @@
 - (void)configureView
 {
     // Update the user interface for the detail item.
-
+	
 	if (self.detailItem) {
 		self.titleLabel.text = [self.detailItem title];
 		self.artistLabel.text = [self.detailItem artist];
+		self.albumLabel.text = [self.detailItem album];
+		self.durationLabel.text = [self.detailItem duration];
+		
+		/// MAKE THIS ASYNC! ///
+		
+		// HACK HACK HACK
+		// lazy async
+		double delayInSeconds = 0.1;
+		dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+		dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+			
+			
+			//NSURL *imgUrl = [NSURL URLWithString:self.detailItem.album150x150];
+			NSURL *imgUrl = [NSURL URLWithString:self.detailItem.album800x800];
+			NSData *imgData = [NSData dataWithContentsOfURL:imgUrl];
+			UIImage *img = [UIImage imageWithData:imgData];
+			
+			self.albumImage.image = img;
+			
+		});
 	}
 }
 

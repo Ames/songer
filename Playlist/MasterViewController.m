@@ -89,8 +89,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
 	Song *song = [playlist getSongAtIndex:indexPath.row];
-	//NSString *object = _objects[indexPath.row];
+	
 	cell.textLabel.text = song.title;
+	cell.detailTextLabel.text = song.artist;
+	
     return cell;
 }
 
@@ -162,6 +164,8 @@
 		
 		//[self insertNewTrack:sourceVC.theNewTrack];
 
+		
+		
 		[self insertNewTrack:sourceVC.detailItem];
 		
 //NSLog(@"done: %@", sourceVC.theNewTrack);

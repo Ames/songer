@@ -11,15 +11,35 @@
 #import "ResultViewController.h"
 
 
-
-@interface SearchViewController () {
-    //NSMutableArray *_objects;
-}
-@end
+//
+//@interface SearchViewController () {
+//    //NSMutableArray *_objects;
+//}
+//@end
 
 @implementation SearchViewController
 
-@synthesize searchResults;
+static NSString *previousQuery;
+
+
+@synthesize searchResults, searchQueue;
+
+
+// using http://deeperdesign.wordpress.com/2011/05/30/cancellable-asynchronous-searching-with-uisearchdisplaycontroller/
+
+
+//
+//- (id)init
+//{
+//    if ((self = [super init]))
+//    {
+//        //self.searchResults = [NSMutableArray array];
+//		self.searchQueue = [NSOperationQueue new];
+//        [self.searchQueue setMaxConcurrentOperationCount:1];
+//    }
+//    return self;
+//}
+
 
 - (void)awakeFromNib
 {
@@ -42,8 +62,18 @@
 	//self.navigationItem.rightBarButtonItem = addButton;
 	self.resultViewController = (ResultViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 	
+	//static NSString *lastQuery;
 	
+	if(previousQuery == NULL){
+		previousQuery = @"";
+	}
+	
+
 	searchResults = [NSMutableArray array];
+	
+	self.searchQueue = [NSOperationQueue new];
+	[self.searchQueue setMaxConcurrentOperationCount:1];
+		
 	
 	//[[self searchBar] becomeFirstResponder];
 	//[[[self searchDisplayController] searchBar] becomeFirstResponder];
@@ -65,7 +95,8 @@
 	dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
 	dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
     
-		[[self searchDisplayController] setActive:YES animated:YES];
+		[self.searchDisplayController setActive:YES animated:YES];
+		self.searchDisplayController.searchBar.text = previousQuery;
 		[[self searchBar] becomeFirstResponder];
 	});
 	
@@ -175,35 +206,37 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.searchDC.searchResultsTableView indexPathForSelectedRow];
+        NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
 		id object = searchResults[indexPath.row];
         //NSDate *object = _objects[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }
-}
-
-
-
-
--(void)updateSearchResultsWithQuery:(NSString *)searchString{
-	[searchResults removeAllObjects];
-	
-	//	const NSUInteger nResults = 10;
-	//
-	//	for(int i=0;i<nResults;i++){
-	//		[searchResults addObject:[NSString stringWithFormat:@"%@ %d",searchString, i]];
-	//	}
-	
-	
-	
-	NSArray *newResults = [MediaNet searchTracksWithKeyword:searchString];
-	[searchResults setArray:newResults];
 	
 }
+
+
+
+
+//-(void)updateSearchResultsWithQuery:(NSString *)searchString{
+//	[searchResults removeAllObjects];
+//	
+//	//	const NSUInteger nResults = 10;
+//	//
+//	//	for(int i=0;i<nResults;i++){
+//	//		[searchResults addObject:[NSString stringWithFormat:@"%@ %d",searchString, i]];
+//	//	}
+//	
+//	
+//	
+//	NSArray *newResults = [MediaNet searchTracksWithKeyword:searchString];
+//	[searchResults setArray:newResults];
+//	
+//}
 
 
 -(void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller{
 	//NSLog(@"Search Done!");
+
 	
 	double delayInSeconds = .1;
 	dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -219,9 +252,42 @@
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString{
 	
-	[self updateSearchResultsWithQuery:searchString];
+	previousQuery = searchString;
 	
-	return YES;
+	[self.searchQueue cancelAllOperations];
+	[self.searchQueue addOperationWithBlock:^{
+		NSArray *newResults = [MediaNet searchTracksWithKeyword:searchString];
+		
+		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+			
+			[searchResults setArray:newResults];
+			
+			[self.searchDisplayController.searchResultsTableView reloadData];
+
+		}];
+		
+	}];
+	
+//	
+//	
+//	
+//	
+//	// HACK HACK HACK
+//	// lazy async
+//	double delayInSeconds = 0.1;
+//	dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+//	dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//		
+//		[self updateSearchResultsWithQuery:searchString];
+//		
+//		[self.searchDisplayController.searchResultsTableView reloadData];
+//	});
+//	
+//	
+//	//[self updateSearchResultsWithQuery:searchString];
+//	
+//	//return YES;
+	return NO;
 }
 
 @end
