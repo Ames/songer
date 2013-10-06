@@ -41,11 +41,8 @@
 		self.titleLabel.text = [self.detailItem title];
 		self.albumLabel.text = [self.detailItem album];
 		self.durationLabel.text = [self.detailItem duration];
-		//self.albumImage.image
 		
-		
-		// HACK HACK HACK
-		// lazy async
+		// a hacky pseudo-async image load
 		double delayInSeconds = 0.1;
 		dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
 		dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -57,17 +54,7 @@
 			
 			self.albumImage.image = img;
 		});
-		
-		/*
-		/// MAKE THIS ASYNC! ///
-		NSURL *imgUrl = [NSURL URLWithString:self.detailItem.album150x150];
-		NSData *imgData = [NSData dataWithContentsOfURL:imgUrl];
-		UIImage *img = [UIImage imageWithData:imgData];
-		
-		self.albumImage.image = img;
-		*/
-		
-	    //self.detailDescriptionLabel.text = [self.detailItem description];
+
 	}
 }
 
@@ -84,29 +71,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return 1;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//
-//    return 6;
-//}
-
-
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-//	if([[segue identifier] isEqualToString:@"ReturnInput"]){
-//		
-//		
-//		
-//		
-//		if([self.titleLabel.text length]){
-//			theNewTrack = [Song songWithTitle:self.nameField.text artist:self.artistField.text];
-//		}
-//	}
-//}
 
 
 #pragma mark - Split view

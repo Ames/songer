@@ -7,27 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-
 #import "MediaNet.h"
-
+#import "MNet.h"
 
 @class ResultViewController;
 
 @interface SearchViewController : UITableViewController <UISearchDisplayDelegate>
 
 @property (strong, nonatomic) ResultViewController *resultViewController;
-
 @property (strong, nonatomic) NSOperationQueue *searchQueue;
-
-
-// for now just an array of strings. Eventually array of Song objects
 @property (strong, nonatomic) NSMutableArray *searchResults;
 
-
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-
-//@property (strong, nonatomic) UISearchDisplayController *searchController;
-
 @property (strong, nonatomic) IBOutlet UITableView *mainTable;
 
 @end

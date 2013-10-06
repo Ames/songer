@@ -11,7 +11,10 @@
 
 
 #import <Foundation/Foundation.h>
-//#import <RestKit/RestKit.h>
+
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+#import <RestKit/RestKit.h>
 
 #import "Song.h"
 #import "Playlist.h"

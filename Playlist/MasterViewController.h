@@ -13,7 +13,6 @@
 
 @class DetailViewController;
 
-//@class Playlist;
 
 @interface MasterViewController : UITableViewController
 
@@ -21,7 +20,5 @@
 
 @property (strong, nonatomic) Playlist* playlist;
 
-- (IBAction)done:(UIStoryboardSegue *)segue;
-- (IBAction)cancel:(UIStoryboardSegue *)segue;
 
 @end

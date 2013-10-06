@@ -7,13 +7,7 @@
 //
 
 #import "MasterViewController.h"
-
 #import "DetailViewController.h"
-
-//@interface MasterViewController () {
-//    NSMutableArray *_objects;
-//}
-//@end
 
 @implementation MasterViewController
 
@@ -34,12 +28,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 	self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
-	//UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-	//self.navigationItem.rightBarButtonItem = addButton;
 	
 	self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-
+	
+	
 	// create that playlist
 	playlist = [Playlist playlist];
 }
@@ -50,18 +42,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (void)insertNewObject:(id)sender
-//{
-//    if (!_objects) {
-//        _objects = [[NSMutableArray alloc] init];
-//    }
-//    [_objects insertObject:[NSDate date] atIndex:0];
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-//}
 
 - (void)insertNewTrack:(Song *)song{
-
+	
 	NSUInteger index = playlist.length;
 	
 	[playlist insertSong:song atIndex:index];
@@ -87,7 +70,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
+	
 	Song *song = [playlist getSongAtIndex:indexPath.row];
 	
 	cell.textLabel.text = song.title;
@@ -106,7 +89,6 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 		[playlist removeSongAtIndex:indexPath.row];
-        //[_objects removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -118,26 +100,18 @@
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
 	
-	//NSLog(@"%@",_objects);
-
 	[playlist moveSongFromIndex:fromIndexPath.row toIndex:toIndexPath.row];
 	
-//	id tmp = _objects[fromIndexPath.row];
-//	[_objects removeObjectAtIndex:fromIndexPath.row];
-//	[_objects insertObject:tmp atIndex:toIndexPath.row];
-
-	//NSLog(@"%@",_objects);
 }
-
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -156,26 +130,17 @@
     }
 }
 
--(IBAction)done:(UIStoryboardSegue *)segue{
-	
+-(IBAction)done:(UIStoryboardSegue *)segue
+{
 	ResultViewController *sourceVC = [segue sourceViewController];
 	
-	if(sourceVC.detailItem){
-		
-		//[self insertNewTrack:sourceVC.theNewTrack];
-
-		
-		
+	if(sourceVC.detailItem)
 		[self insertNewTrack:sourceVC.detailItem];
-		
-//NSLog(@"done: %@", sourceVC.theNewTrack);
-		//[self insertNewTrackWithName:sourceVC.theNewTrack];
-	}
-	//NSLog(@"done");
+	
 }
 
 -(IBAction)cancel:(UIStoryboardSegue *)segue{
-	//NSLog(@"cancel");
+	
 }
 
 @end

@@ -7,15 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Song.h"
 
-//@class Song;
+#import "Song.h"
+#import "Settings.h"
+
 
 @interface MediaNet : NSObject
 
 +(NSArray *)searchTracksWithKeyword:(NSString *)keyword;
 +(NSArray *)searchTracksWithKeyword:(NSString *)keyword nResults:(NSNumber *)nResults;
 
-+(NSDictionary *)mediaNetQueryWithArguments:(NSDictionary *)arguments;
++(NSDictionary *)queryWithParameters:(NSDictionary *)params;
 
 @end

@@ -14,8 +14,6 @@
 
 @property (strong, nonatomic) Song *detailItem;
 
-//@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
-
 @property (weak, nonatomic) IBOutlet UILabel *artistLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *albumLabel;
@@ -23,7 +21,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *albumImage;
 
 @property (strong, nonatomic) IBOutlet UITableView *view;
-
-@property (nonatomic) Song *theNewTrack;
 
 @end

@@ -72,7 +72,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cZU-Oi-B1e" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-687" y="-630"/>
+            <point key="canvasLocation" x="-927" y="-631"/>
         </scene>
         <!--Master View Controller - Master-->
         <scene sceneID="smW-Zh-WAh">
