@@ -11,12 +11,12 @@
 #import "Playlist.h"
 #import "Song.h"
 
-@class DetailViewController;
+@class SongViewController;
 
 
-@interface MasterViewController : UITableViewController
+@interface PlaylistViewController : UITableViewController
 
-@property (strong, nonatomic) DetailViewController *detailViewController;
+@property (strong, nonatomic) SongViewController *songViewController;
 
 @property (strong, nonatomic) Playlist* playlist;
 

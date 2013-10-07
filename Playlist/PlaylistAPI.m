@@ -10,4 +10,28 @@
 
 @implementation PlaylistAPI
 
+
+-(id)init{
+	self = [super init];
+	
+	// init stuff
+	
+	return self;
+}
+
+// singleton magic
++(PlaylistAPI *)api{
+	static PlaylistAPI *thePlaylistAPI;
+
+    @synchronized(self){
+		if(!thePlaylistAPI){
+			if(thePlaylistAPI==NULL)
+				thePlaylistAPI = [[self alloc] init];
+		}
+	}
+	return thePlaylistAPI;
+}
+
+
+
 @end

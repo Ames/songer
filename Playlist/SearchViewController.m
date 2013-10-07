@@ -164,6 +164,9 @@ static NSString *previousQuery;
 	previousQuery = searchString;
 
 	
+	if([searchString isEqualToString:@""])
+		return NO;
+	
 	[self setSearchStatus:@"Searching..."];
 
 	// we do the search operation in a seperate OperationQueue,

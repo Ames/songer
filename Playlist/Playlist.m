@@ -18,16 +18,24 @@
 + (Playlist *) playlistWithArray:(NSArray *)playlistArray{
 	return [[self alloc] initWithArray:playlistArray];
 }
++ (Playlist *) playlistWithName:(NSString *)name{
+	return [[self alloc] initWithName:name];
+}
 
 - (Playlist *) init{
 	self = [super init];
 	playlist = [NSMutableArray array];
 	return self;
 }
-
 - (Playlist *) initWithArray:(NSArray *)playlistArray{
 	self = [super init];
 	[self loadPlaylistFromArray:playlistArray];
+	return self;
+}
+-(Playlist *) initWithName:(NSString *)name{
+	self = [super init];
+	self.name = name;
+	playlist = [NSMutableArray array];
 	return self;
 }
 

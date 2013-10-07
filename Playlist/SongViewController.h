@@ -8,11 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Song.h"
-//@class Song;
 
-@interface DetailViewController : UIViewController <UISplitViewControllerDelegate>
+@interface SongViewController : UIViewController <UISplitViewControllerDelegate>
 
-@property (strong, nonatomic) Song * detailItem;
+@property (strong, nonatomic) Song * song;
 
 @property (weak, nonatomic) IBOutlet UILabel *artistLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;

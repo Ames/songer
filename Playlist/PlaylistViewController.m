@@ -6,10 +6,12 @@
 //  Copyright (c) 2013 Ames Bielenberg. All rights reserved.
 //
 
-#import "MasterViewController.h"
-#import "DetailViewController.h"
+#import "PlaylistViewController.h"
+#import "SongViewController.h"
 
-@implementation MasterViewController
+#import "PlaylistAPI.h"
+
+@implementation PlaylistViewController
 
 
 @synthesize playlist;
@@ -26,14 +28,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-	self.navigationItem.leftBarButtonItem = self.editButtonItem;
 	
-	self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+	id addButton = self.navigationItem.rightBarButtonItem;
+	
+	self.navigationItem.rightBarButtonItems = @[addButton,self.editButtonItem];
+	
+	// Do any additional setup after loading the view, typically from a nib.
+	//self.navigationItem.leftBarButtonItem = self.editButtonItem;
+	
+	
+	//self.navigationItem.backBarButtonItem
+	
+	// for making startImages
+	//[self.navigationItem.leftBarButtonItem setEnabled:NO];
+	//[self.navigationItem.rightBarButtonItem setEnabled:NO];
+	
+	self.songViewController = (SongViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 	
 	
 	// create that playlist
-	playlist = [Playlist playlist];
+	//playlist = [Playlist playlist];
+	
+	//PlaylistAPI *api = [PlaylistAPI api];
+	//NSLog(@"%@",api);
+	
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,7 +61,7 @@
 }
 
 
-- (void)insertNewTrack:(Song *)song{
+- (void)insertNewSong:(Song *)song{
 	
 	NSUInteger index = playlist.length;
 	
@@ -52,6 +70,23 @@
 	// woo animation
 	NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
 	[self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+-(void)setPlaylist:(Playlist *)newPlaylist{
+	if (playlist != newPlaylist) {
+		playlist = newPlaylist;
+		
+		// Update the view.
+		[self.tableView reloadData]; // does this happend automatically?
+		
+		self.navigationItem.title = playlist.name;
+	}
+	
+//		// this looks like iPad stuff...
+//		if (self.masterPopoverController != nil) {
+//			[self.masterPopoverController dismissPopoverAnimated:YES];
+//		}
+//	}
 }
 
 
@@ -117,16 +152,16 @@
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
 		Song *song = [playlist getSongAtIndex:indexPath.row];
-        self.detailViewController.detailItem = song;
+        self.songViewController.song = song;
     }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+    if ([[segue identifier] isEqualToString:@"showSong"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         Song *song = [playlist getSongAtIndex:indexPath.row];
-        [[segue destinationViewController] setDetailItem:song];
+        [[segue destinationViewController] setSong:song];
     }
 }
 
@@ -135,7 +170,7 @@
 	ResultViewController *sourceVC = [segue sourceViewController];
 	
 	if(sourceVC.detailItem)
-		[self insertNewTrack:sourceVC.detailItem];
+		[self insertNewSong:sourceVC.detailItem];
 	
 }
 
