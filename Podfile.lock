@@ -21,17 +21,22 @@ PODS:
   - RestKit/Support (0.21.0):
     - TransitionKit (= 1.1.1)
   - RKValueTransformers (1.0.0)
+  - SDWebImage (3.4):
+    - SDWebImage/Core
+  - SDWebImage/Core (3.4)
   - SOCKit (1.1)
   - TransitionKit (1.1.1)
 
 DEPENDENCIES:
   - RestKit (~> 0.21.0)
+  - SDWebImage (~> 3.4)
 
 SPEC CHECKSUMS:
   AFNetworking: 0700ec7a58c36ad217173e167f6e4df7270df66b
   ISO8601DateFormatterValueTransformer: d0af1f50a9df42db72d7418db31938b8473e0af8
   RestKit: c11a30e7bc73513d9d2c2695672aba7697d24181
   RKValueTransformers: 01dc043fd853f6e40459b2e732dff545298a0f91
+  SDWebImage: 366188f04c019bfd712d45e3b36aa52070f4abd8
   SOCKit: 2f3bc4d07910de12dcc202815e07db68a3802581
   TransitionKit: d0e3344aac92991395d4c2e72d9c5a8ceeb12910
 

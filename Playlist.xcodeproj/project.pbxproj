@@ -101,6 +101,8 @@
 		9898BC7817FC63690052495C /* ResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultViewController.m; sourceTree = "<group>"; };
 		9898BC7A17FC73A70052495C /* SongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongViewController.h; sourceTree = "<group>"; };
 		9898BC7B17FC73A70052495C /* SongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongViewController.m; sourceTree = "<group>"; };
+		98C3FC4B180366DB00019DE4 /* libPods-SDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libPods-SDWebImage.a"; path = "Pods/build/Debug-iphoneos/libPods-SDWebImage.a"; sourceTree = "<group>"; };
+		98C3FC4D1803683D00019DE4 /* libPods-SDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libPods-SDWebImage.a"; path = "Pods/build/Release-iphoneos/libPods-SDWebImage.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,8 @@
 		9898BC2C17FB69D40052495C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				98C3FC4D1803683D00019DE4 /* libPods-SDWebImage.a */,
+				98C3FC4B180366DB00019DE4 /* libPods-SDWebImage.a */,
 				98167A0B17FD01F000BFE87F /* CFNetwork.framework */,
 				98167A0C17FD01F000BFE87F /* CoreData.framework */,
 				98167A0D17FD01F000BFE87F /* MobileCoreServices.framework */,

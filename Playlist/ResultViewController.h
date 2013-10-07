@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Song.h"
-
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface ResultViewController : UITableViewController <UISplitViewControllerDelegate>
 

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9898BC2917FB69D40052495C"
-               BuildableName = "Playlist.app"
+               BuildableName = "Songer.app"
                BlueprintName = "Playlist"
                ReferencedContainer = "container:Playlist.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9898BC2917FB69D40052495C"
-            BuildableName = "Playlist.app"
+            BuildableName = "Songer.app"
             BlueprintName = "Playlist"
             ReferencedContainer = "container:Playlist.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9898BC2917FB69D40052495C"
-            BuildableName = "Playlist.app"
+            BuildableName = "Songer.app"
             BlueprintName = "Playlist"
             ReferencedContainer = "container:Playlist.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9898BC2917FB69D40052495C"
-            BuildableName = "Playlist.app"
+            BuildableName = "Songer.app"
             BlueprintName = "Playlist"
             ReferencedContainer = "container:Playlist.xcodeproj">
          </BuildableReference>

@@ -40,28 +40,41 @@
     // Update the user interface for the detail item.
 	
 	if (song) {
+		NSURL *artUrl = [NSURL URLWithString:song.album800x800];
+		
 		self.titleLabel.text = [song title];
 		self.artistLabel.text = [song artist];
 		self.albumLabel.text = [song album];
 		self.durationLabel.text = [song duration];
+		[self.albumImage setImageWithURL:artUrl];
 		
-		/// MAKE THIS ASYNC! ///
-		
-		// HACK HACK HACK
-		// lazy async
-		double delayInSeconds = 0.1;
-		dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-		dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-			
-			
-			//NSURL *imgUrl = [NSURL URLWithString:song.album150x150];
-			NSURL *imgUrl = [NSURL URLWithString:song.album800x800];
-			NSData *imgData = [NSData dataWithContentsOfURL:imgUrl];
-			UIImage *img = [UIImage imageWithData:imgData];
-			
-			self.albumImage.image = img;
-			
-		});
+		self.titleLabelL.text = [song title];
+		self.artistLabelL.text = [song artist];
+		self.albumLabelL.text = [song album];
+		self.durationLabelL.text = [song duration];
+		[self.albumImageL setImageWithURL:artUrl];
+	}
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+	[self changeForOrientation:self.interfaceOrientation];
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
+	
+	[UIView animateWithDuration:duration animations:^{
+		[self changeForOrientation:toInterfaceOrientation];
+	}];
+
+}
+
+-(void)changeForOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+	if (toInterfaceOrientation == UIInterfaceOrientationPortrait) {
+		self.landscapeView.alpha=0;
+		self.portraitView.alpha=1;
+	}else{
+		self.landscapeView.alpha=1;
+		self.portraitView.alpha=0;
 	}
 }
 
