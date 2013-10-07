@@ -42,17 +42,19 @@
 	
 	plList = [PlaylistList new];
 	
-//	// for testing
-//	Playlist *testList = [Playlist playlist];
-//	testList.name = @"test";
-//	[plList addPlaylist:testList];
-//	
-	
 
 	//self.navigationItem.rightBarButtonItem.enabled = FALSE;
 	
-	// load the playlists
+	[self loadPlaylists];
+	 
 	
+	UIRefreshControl *refresh = [UIRefreshControl new];
+	[refresh addTarget:self action:@selector(loadPlaylists) forControlEvents:UIControlEventValueChanged];
+	self.refreshControl = refresh;
+	
+}
+
+- (void)loadPlaylists{
 	[[PlaylistAPI api] getPlaylists:^(NSArray *playlists) {
 		NSLog(@"%@",playlists);
 		
@@ -71,14 +73,9 @@
 			}];
 		}
 		
-//		[[PlaylistAPI api] loadPlaylist:playlists[0] callback:^(Playlist *playlistObj) {
-//			NSLog(@"%@",playlistObj);
-//		}];
-//		
-		
+		[self.refreshControl endRefreshing];
+
 	}];
-	 
-	
 }
 
 - (void)didReceiveMemoryWarning

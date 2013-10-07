@@ -37,6 +37,19 @@
 	*/
 	
 	self.songViewController = (SongViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+	
+
+	
+	UIRefreshControl *refresh = [UIRefreshControl new];
+	[refresh addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+	self.refreshControl = refresh;
+}
+
+- (void)refresh{
+	[[PlaylistAPI api] loadPlaylist:playlist callback:^(Playlist *playlist) {
+		[self.tableView reloadData];
+		[self.refreshControl endRefreshing];
+	}];
 }
 
 - (void)didReceiveMemoryWarning

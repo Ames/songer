@@ -21,52 +21,6 @@ RKObjectManager *manager;
 	
 	manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:[Settings get:@"ApiURL"]]];
 	
-
-
-	
-	RKObjectMapping *playlistMapping = [RKObjectMapping mappingForClass:[Playlist class]];
-	[playlistMapping addAttributeMappingsFromDictionary:
-	 @{@"id": @"playlistId",
-	   @"name":@"name",
-	   }];
-	
-	
-	RKObjectMapping* playlistRequestMapping = [RKObjectMapping requestMapping ]; // Shortcut for [RKObjectMapping mappingForClass:[NSMutableDictionary class] ]
-	
-	[playlistRequestMapping addAttributeMappingsFromDictionary:
-	 @{@"playlistId": @"playlist[id]",
-	   @"name":@"playlist[name]",
-	   }];
-
-	
-	
-	[manager addResponseDescriptor: [RKResponseDescriptor responseDescriptorWithMapping:playlistMapping method:RKRequestMethodAny pathPattern:@"playlists" keyPath:nil statusCodes:nil]];
-	
-	
-	[manager addResponseDescriptor: [RKResponseDescriptor responseDescriptorWithMapping:playlistMapping method:RKRequestMethodAny pathPattern:@"playlists/:playlistId" keyPath:nil statusCodes:nil]];
-	
-	
-	
-//	[manager.mappingProvider setSerializationMapping:[listMapping inverseMapping] forClass:[List class]];
-
-//	
-//	[manager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:playlistMapping method:RKRequestMethodPOST pathPattern:@"playlists" keyPath:nil statusCodes:nil]];
-	
-	[manager addRequestDescriptor:[RKRequestDescriptor requestDescriptorWithMapping:playlistRequestMapping objectClass:[Playlist class] rootKeyPath:nil method:RKRequestMethodPOST]];
-	
-//	RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:userMapping
-//																				   objectClass:[User class] rootKeyPath:nil];
-//	
-//	[objectManager addRequestDescriptor: requestDescriptor];
-//	
-
-	
-	[[RKObjectManager sharedManager].router.routeSet addRoute:[RKRoute routeWithClass:[Playlist class] pathPattern:@"playlists/:playlistId" method:RKRequestMethodGET|RKRequestMethodDELETE]];
-	
-	
-	[[RKObjectManager sharedManager].router.routeSet addRoute:[RKRoute routeWithClass:[Playlist class] pathPattern:@"playlists" method:RKRequestMethodPOST]];
-
-	
 	
 	RKObjectMapping *songMapping = [RKObjectMapping mappingForClass:[Song class]];
 	[songMapping addAttributeMappingsFromDictionary:
@@ -82,6 +36,12 @@ RKObjectManager *manager;
 	   @"playlist_id": @"playlistId",
 	   }];
 	
+	
+	
+	[manager addResponseDescriptor: [RKResponseDescriptor responseDescriptorWithMapping:songMapping method:RKRequestMethodAny pathPattern:@"playlists/:playlistId/songs/:songId" keyPath:nil statusCodes:nil]];
+	
+
+	
 	RKObjectMapping *songRequestMapping = [RKObjectMapping requestMapping];
 	[songRequestMapping addAttributeMappingsFromDictionary:
 	 @{
@@ -96,30 +56,49 @@ RKObjectManager *manager;
 	   @"playlistId":  @"playlist[id]",
 	   }];
 	
-	//[manager addResponseDescriptor: [RKResponseDescriptor responseDescriptorWithMapping:songMapping method:RKRequestMethodAny pathPattern:@"playlists/:playlistId" keyPath:@"songs" statusCodes:nil]];
-	
-	
-	
-	//[playlistMapping addRelationshipMappingWithSourceKeyPath:@"playlist" mapping:songMapping];
-	
-	// Direct configuration of instances
-	RKRelationshipMapping* playlistSongMapping = [RKRelationshipMapping relationshipMappingFromKeyPath:@"songs" toKeyPath:@"playlist" withMapping:songMapping];
-	[playlistMapping addPropertyMapping:playlistSongMapping];
-	
-	
-	
-	
-	[manager addResponseDescriptor: [RKResponseDescriptor responseDescriptorWithMapping:songMapping method:RKRequestMethodAny pathPattern:@"playlists/:playlistId/songs/:songId" keyPath:nil statusCodes:nil]];
-	
 	
 	[manager addRequestDescriptor:[RKRequestDescriptor requestDescriptorWithMapping:songRequestMapping objectClass:[Song class] rootKeyPath:nil method:RKRequestMethodAny]];
+	
+	
+	
+	
+	RKObjectMapping *playlistMapping = [RKObjectMapping mappingForClass:[Playlist class]];
+	[playlistMapping addAttributeMappingsFromDictionary:
+	 @{@"id": @"playlistId",
+	   @"name":@"name",
+	   }];
+	
+	[manager addResponseDescriptor: [RKResponseDescriptor responseDescriptorWithMapping:playlistMapping method:RKRequestMethodAny pathPattern:@"playlists" keyPath:nil statusCodes:nil]];
+	
+	[manager addResponseDescriptor: [RKResponseDescriptor responseDescriptorWithMapping:playlistMapping method:RKRequestMethodAny pathPattern:@"playlists/:playlistId" keyPath:nil statusCodes:nil]];
+	
+	
+	
+	RKObjectMapping* playlistRequestMapping = [RKObjectMapping requestMapping ];
+	[playlistRequestMapping addAttributeMappingsFromDictionary:
+	 @{@"playlistId": @"playlist[id]",
+	   @"name":@"playlist[name]",
+	   }];
+
+	[manager addRequestDescriptor:[RKRequestDescriptor requestDescriptorWithMapping:playlistRequestMapping objectClass:[Playlist class] rootKeyPath:nil method:RKRequestMethodPOST]];
 	
 	
 	[[RKObjectManager sharedManager].router.routeSet addRoute:[RKRoute routeWithClass:[Song class] pathPattern:@"playlists/:playlistId/songs/:songId" method:RKRequestMethodGET|RKRequestMethodDELETE]];
 	
 	[[RKObjectManager sharedManager].router.routeSet addRoute:[RKRoute routeWithClass:[Song class] pathPattern:@"playlists/:playlistId/songs" method:RKRequestMethodPOST]];
+	
 
 	
+	[[RKObjectManager sharedManager].router.routeSet addRoute:[RKRoute routeWithClass:[Playlist class] pathPattern:@"playlists/:playlistId" method:RKRequestMethodGET|RKRequestMethodDELETE]];
+	
+	[[RKObjectManager sharedManager].router.routeSet addRoute:[RKRoute routeWithClass:[Playlist class] pathPattern:@"playlists" method:RKRequestMethodPOST]];
+
+
+	
+	[playlistMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"songs" toKeyPath:@"playlist" withMapping:songMapping]];
+	
+	
+
 	
 	return self;
 }
