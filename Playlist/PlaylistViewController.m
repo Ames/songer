@@ -29,29 +29,14 @@
 {
     [super viewDidLoad];
 	
+	/*
+	 //  edit button
 	id addButton = self.navigationItem.rightBarButtonItem;
 	
 	self.navigationItem.rightBarButtonItems = @[addButton,self.editButtonItem];
-	
-	// Do any additional setup after loading the view, typically from a nib.
-	//self.navigationItem.leftBarButtonItem = self.editButtonItem;
-	
-	
-	//self.navigationItem.backBarButtonItem
-	
-	// for making startImages
-	//[self.navigationItem.leftBarButtonItem setEnabled:NO];
-	//[self.navigationItem.rightBarButtonItem setEnabled:NO];
+	*/
 	
 	self.songViewController = (SongViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-	
-	
-	// create that playlist
-	//playlist = [Playlist playlist];
-	
-	//PlaylistAPI *api = [PlaylistAPI api];
-	//NSLog(@"%@",api);
-	
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,9 +52,16 @@
 	
 	[playlist insertSong:song atIndex:index];
 	
+	
+	[[PlaylistAPI api] addSong:song callback:^(Playlist *playlist) {
+		NSLog(@"added.");
+	}];
+	
 	// woo animation
 	NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
 	[self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+
+	
 }
 
 -(void)setPlaylist:(Playlist *)newPlaylist{
@@ -123,6 +115,11 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+		
+		[[PlaylistAPI api] deleteSong:[playlist getSongAtIndex:indexPath.row] callback:^(Playlist *playlist) {
+			NSLog(@"deleted.");
+		}];
+		
 		[playlist removeSongAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
@@ -131,13 +128,14 @@
 }
 
 
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-	
-	[playlist moveSongFromIndex:fromIndexPath.row toIndex:toIndexPath.row];
-	
-}
+//// Override to support rearranging the table view.
+//- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+//{
+//	
+//	[playlist moveSongFromIndex:fromIndexPath.row toIndex:toIndexPath.row];
+//	
+//}
+
 
 /*
  // Override to support conditional rearranging of the table view.

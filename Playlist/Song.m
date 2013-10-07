@@ -29,6 +29,7 @@
 	self.album75x75 = track[@"Album"][@"Images"][@"Album75x75"];
 	self.album150x150 = track[@"Album"][@"Images"][@"Album150x150"];
 	self.album800x800 = track[@"Album"][@"Images"][@"Album800x800"];
+	self.mNetId = track[@"MnetId"];
 	
 	return self;
 }

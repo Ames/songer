@@ -42,10 +42,43 @@
 	
 	plList = [PlaylistList new];
 	
-	// for testing
-	Playlist *testList = [Playlist playlist];
-	testList.name = @"test";
-	[plList addPlaylist:testList];
+//	// for testing
+//	Playlist *testList = [Playlist playlist];
+//	testList.name = @"test";
+//	[plList addPlaylist:testList];
+//	
+	
+
+	//self.navigationItem.rightBarButtonItem.enabled = FALSE;
+	
+	// load the playlists
+	
+	[[PlaylistAPI api] getPlaylists:^(NSArray *playlists) {
+		NSLog(@"%@",playlists);
+		
+		[plList.list setArray:playlists];
+		[self.tableView reloadData];
+		
+		// load each playlist
+		
+		for(Playlist *playlist in playlists){
+			NSLog(@"load %@",playlist.name);
+			[[PlaylistAPI api] loadPlaylist:playlist callback:^(Playlist *playlistObj) {
+				
+				playlistObj.loaded = TRUE;
+				[self.tableView reloadData];
+				
+			}];
+		}
+		
+//		[[PlaylistAPI api] loadPlaylist:playlists[0] callback:^(Playlist *playlistObj) {
+//			NSLog(@"%@",playlistObj);
+//		}];
+//		
+		
+	}];
+	 
+	
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,8 +118,12 @@
 	Playlist *playlist = plList.list[indexPath.row];
 	cell.textLabel.text = playlist.name;
 	
-	
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d song%@",playlist.length,playlist.length==1?@"":@"s"];
+	if(playlist.loaded){
+		cell.detailTextLabel.text = [NSString stringWithFormat:@"%d song%@",playlist.length,playlist.length==1?@"":@"s"];
+	}else{
+		cell.detailTextLabel.text = @"loading...";
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+	}
 	
     return cell;
 }
@@ -168,6 +205,19 @@
 
 #pragma mark - Navigation
 
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+	
+    if ([identifier isEqualToString:@"showPlaylist"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+		Playlist *playlist = plList.list[indexPath.row];
+		
+		return playlist.loaded;
+    }
+	
+	return YES;
+}
+
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showPlaylist"]) {
@@ -200,6 +250,13 @@
 	if (alertView.tag==2 && buttonIndex==1) {
 		NSLog(@"delete %d",self.deleteIndex);
 		
+		Playlist *playlist = [plList getPlaylistAtIndex:self.deleteIndex];
+		
+		[[PlaylistAPI api] deletePlaylist:playlist callback:^(NSArray *playlists) {
+			NSLog(@"deleted.");
+		}];
+
+		
 		[plList deletePlaylistAtIndex:self.deleteIndex];
 				
 		NSIndexPath *indexPath = [NSIndexPath indexPathForItem:self.deleteIndex inSection:0];
@@ -219,6 +276,10 @@
 
 	[self performSegueWithIdentifier:@"showPlaylist" sender:self.view];
 	
+	
+	[[PlaylistAPI api] addPlaylist:playlist callback:^(NSArray *playlists) {
+		NSLog(@"kk");
+	}];
 }
 
 @end

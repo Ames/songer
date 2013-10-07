@@ -7,16 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import "Song.h"
+#import "Song.h"
 
-@class Song;
+//@class Song;
 
 @interface Playlist : NSObject
 
 @property (strong, nonatomic) NSMutableArray *playlist;
 @property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSNumber *serverId;
-
+@property (strong, nonatomic) NSNumber *playlistId;
+@property BOOL loaded;
 
 // factories
 + (Playlist *) playlist;

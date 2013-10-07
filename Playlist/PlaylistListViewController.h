@@ -10,7 +10,7 @@
 
 #import "PlaylistList.h"
 #import "PlaylistViewController.h"
-//@class PlaylistViewController;
+#import "PlaylistAPI.h"
 
 @interface PlaylistListViewController : UITableViewController <UIAlertViewDelegate>
 

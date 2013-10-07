@@ -69,7 +69,7 @@
 		982ACCFD1802349100E02407 /* PlaylistListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistListViewController.m; sourceTree = "<group>"; };
 		9892F30F17FF315100390BC9 /* MNet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNet.h; sourceTree = "<group>"; };
 		9892F31017FF315100390BC9 /* MNet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNet.m; sourceTree = "<group>"; };
-		9898BC2A17FB69D40052495C /* Playlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Playlist.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9898BC2A17FB69D40052495C /* Songer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Songer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9898BC2D17FB69D40052495C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9898BC2F17FB69D40052495C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		9898BC3117FB69D40052495C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -146,7 +146,7 @@
 		9898BC2B17FB69D40052495C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9898BC2A17FB69D40052495C /* Playlist.app */,
+				9898BC2A17FB69D40052495C /* Songer.app */,
 				9898BC5117FB69D50052495C /* PlaylistTests.xctest */,
 			);
 			name = Products;
@@ -254,7 +254,7 @@
 			);
 			name = Playlist;
 			productName = Playlist;
-			productReference = 9898BC2A17FB69D40052495C /* Playlist.app */;
+			productReference = 9898BC2A17FB69D40052495C /* Songer.app */;
 			productType = "com.apple.product-type.application";
 		};
 		9898BC5017FB69D50052495C /* PlaylistTests */ = {
@@ -525,7 +525,7 @@
 				GCC_PREFIX_HEADER = "Playlist/Playlist-Prefix.pch";
 				INFOPLIST_FILE = "Playlist/Playlist-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Songer;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -542,7 +542,7 @@
 				GCC_PREFIX_HEADER = "Playlist/Playlist-Prefix.pch";
 				INFOPLIST_FILE = "Playlist/Playlist-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Songer;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

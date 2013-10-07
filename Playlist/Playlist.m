@@ -25,17 +25,19 @@
 - (Playlist *) init{
 	self = [super init];
 	playlist = [NSMutableArray array];
+	_loaded = NO;
 	return self;
 }
 - (Playlist *) initWithArray:(NSArray *)playlistArray{
-	self = [super init];
+	self = [self init];
 	[self loadPlaylistFromArray:playlistArray];
+	_loaded = YES;
 	return self;
 }
 -(Playlist *) initWithName:(NSString *)name{
-	self = [super init];
+	self = [self init];
 	self.name = name;
-	playlist = [NSMutableArray array];
+	_loaded = YES;
 	return self;
 }
 
@@ -49,6 +51,7 @@
 
 
 - (void) insertSong:(Song *)song atIndex:(NSUInteger)index{
+	song.playlistId = self.playlistId;
 	[playlist insertObject:song atIndex:index];
 }
 - (Song *) removeSongAtIndex:(NSUInteger)index{

@@ -10,6 +10,7 @@
 #import "ResultViewController.h"
 #import "Playlist.h"
 #import "Song.h"
+#import "PlaylistAPI.h"
 
 @class SongViewController;
 

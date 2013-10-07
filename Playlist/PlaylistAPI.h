@@ -35,6 +35,7 @@
 
 #import "Song.h"
 #import "Playlist.h"
+#import "Settings.h"
 
 
 @interface PlaylistAPI : NSObject
@@ -47,10 +48,10 @@
 -(void)addPlaylist:(Playlist *)playlist callback:(void(^)(NSArray *playlists))callback;
 -(void)deletePlaylist:(Playlist *)playlist callback:(void(^)(NSArray *playlists))callback;
 
--(void)getPlaylistForID:(NSNumber *)id callback:(void(^)(Playlist *playlist))callback;
--(void)addSong:(Song *)song toPlaylist:(Playlist *)playlist callback:(void(^)(Playlist *playlist))callback;
--(void)deleteSong:(Song *)song fromPlaylist:(Playlist *)playlist callback:(void(^)(Playlist *playlist))callback;
--(void)moveSong:(Song *)song from:(NSNumber *)fromIndex to:(NSNumber *)toIndex callback:(void(^)(Playlist *playlist))callback;
+-(void)loadPlaylist:(Playlist *)playlist callback:(void(^)(Playlist *playlist))callback;
+-(void)addSong:(Song *)song callback:(void(^)(Playlist *playlist))callback;
+-(void)deleteSong:(Song *)song callback:(void(^)(Playlist *playlist))callback;
+//-(void)moveSong:(Song *)song from:(NSNumber *)fromIndex to:(NSNumber *)toIndex callback:(void(^)(Playlist *playlist))callback;
 
 	
 @end

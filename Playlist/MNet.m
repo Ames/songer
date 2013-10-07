@@ -89,6 +89,8 @@
 		   @"Album.Images.Album75x75":   @"album75x75",
 		   @"Album.Images.Album150x150": @"album150x150",
 		   @"Album.Images.Album800x800": @"album800x800",
+		   
+		   @"MnetId": @"mNetId",
 		   }
 		 ];
 		trackMapping.forceCollectionMapping = YES; // RestKit cannot infer this is a collection, so we force it

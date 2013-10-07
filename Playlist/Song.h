@@ -17,7 +17,8 @@
 @property (strong, nonatomic) NSString *album75x75;
 @property (strong, nonatomic) NSString *album150x150;
 @property (strong, nonatomic) NSString *album800x800;
-@property (strong, nonatomic) NSNumber *serverId;
+@property (strong, nonatomic) NSNumber *songId;
+@property (strong, nonatomic) NSNumber *playlistId;
 @property (strong, nonatomic) NSNumber *mNetId;
 
 // ...
