@@ -10,7 +10,7 @@
 
 @interface PlaylistListViewController ()
 
-@property NSInteger deleteIndex;
+@property NSInteger editIndex;
 
 @end
 
@@ -56,7 +56,7 @@
 
 - (void)loadPlaylists{
 	[[PlaylistAPI api] getPlaylists:^(NSArray *playlists) {
-		NSLog(@"%@",playlists);
+		//NSLog(@"%@",playlists);
 		
 		[plList.list setArray:playlists];
 		[self.tableView reloadData];
@@ -64,7 +64,7 @@
 		// load each playlist
 		
 		for(Playlist *playlist in playlists){
-			NSLog(@"load %@",playlist.name);
+			//NSLog(@"load %@",playlist.name);
 			[[PlaylistAPI api] loadPlaylist:playlist callback:^(Playlist *playlistObj) {
 				
 				playlistObj.loaded = TRUE;
@@ -115,6 +115,8 @@
 	Playlist *playlist = plList.list[indexPath.row];
 	cell.textLabel.text = playlist.name;
 	
+	cell.textLabel.tag = indexPath.row;
+	
 	if(playlist.loaded){
 		cell.detailTextLabel.text = [NSString stringWithFormat:@"%d song%@",playlist.length,playlist.length==1?@"":@"s"];
 	}else{
@@ -122,7 +124,47 @@
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	}
 	
+	
+	UILongPressGestureRecognizer *longPressGesture =
+	[[UILongPressGestureRecognizer alloc]
+	  initWithTarget:self action:@selector(longPress:)];
+	[cell addGestureRecognizer:longPressGesture];
+	
     return cell;
+}
+
+
+// http://www.cocoanetics.com/2010/08/taphold-for-tableview-cells-then-and-now/
+-(void)longPress:(UILongPressGestureRecognizer *)gesture{
+	//NSLog(@"%@",gesture);
+	
+	
+	// only when gesture was recognized, not when ended
+	if (gesture.state == UIGestureRecognizerStateBegan)
+	{
+		// get affected cell
+		UITableViewCell *cell = (UITableViewCell *)[gesture view];
+		
+		// get indexPath of cell
+		NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+		
+		// do something with this action
+		//NSLog(@"Long-pressed cell at row %@", indexPath);
+		[self renamePlaylistAtIndex:indexPath.row];
+	}
+}
+
+-(void)renamePlaylistAtIndex:(NSInteger)index{
+	
+	Playlist *playlist = [plList getPlaylistAtIndex:index];
+	self.editIndex = index;
+
+	UIAlertView *renameAlert = [[UIAlertView alloc] initWithTitle:@"Rename Playlist" message:@"Enter a new name" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save", nil];
+	renameAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+	[renameAlert textFieldAtIndex:0].autocapitalizationType = UITextAutocapitalizationTypeWords;
+	[[renameAlert textFieldAtIndex:0] setText:playlist.name];
+	[renameAlert setTag:3];
+	[renameAlert show];
 }
 
 /*
@@ -146,7 +188,7 @@
 		NSString *alertTitle = [NSString stringWithFormat:@"Delete \"%@\"?",playlist.name];
 		NSString *alertmessage = [NSString stringWithFormat:@"The playlist contains %d song%@.\nThis cannot be undone.",playlist.length,playlist.length==1?@"":@"s"];
 		
-		self.deleteIndex = indexPath.row;
+		self.editIndex = indexPath.row;
 		
 		UIAlertView *deleteAlert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertmessage delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
 		[deleteAlert setTag:2];
@@ -226,39 +268,59 @@
 
 - (IBAction)addButtonPressed:(id)sender {
 	
-	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"New Playlist" message:@"Give it a title:" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Create", nil];
+	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"New Playlist" message:@"Give it a name:" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Create", nil];
 	[alertView setTag:1];
 	alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+	[alertView textFieldAtIndex:0].autocapitalizationType = UITextAutocapitalizationTypeWords;
 	[alertView show];
 }
+
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
 	
 	// ADD modal
 	if (alertView.tag==1 && buttonIndex==1) {
-		NSString *newName = [alertView textFieldAtIndex:0].text;
-		if(newName.length){
-			
-			[self insertNewPlaylist:[Playlist playlistWithName:newName]];
+		NSString *name = [[alertView textFieldAtIndex:0].text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+		
+		if(name.length){
+			[self insertNewPlaylist:[Playlist playlistWithName:name]];
 		}
 	}
 	
 	// DELETE modal
 	if (alertView.tag==2 && buttonIndex==1) {
-		NSLog(@"delete %d",self.deleteIndex);
 		
-		Playlist *playlist = [plList getPlaylistAtIndex:self.deleteIndex];
+		Playlist *playlist = [plList getPlaylistAtIndex:self.editIndex];
 		
 		[[PlaylistAPI api] deletePlaylist:playlist callback:^(NSArray *playlists) {
-			NSLog(@"deleted.");
+			//NSLog(@"deleted.");
 		}];
 
 		
-		[plList deletePlaylistAtIndex:self.deleteIndex];
+		[plList deletePlaylistAtIndex:self.editIndex];
 				
-		NSIndexPath *indexPath = [NSIndexPath indexPathForItem:self.deleteIndex inSection:0];
+		NSIndexPath *indexPath = [NSIndexPath indexPathForItem:self.editIndex inSection:0];
 		
 		[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+	}
+	
+	// RENAME modal
+	if (alertView.tag==3 && buttonIndex==1) {
+				
+		Playlist *playlist = [plList getPlaylistAtIndex:self.editIndex];
+		
+		// trim whitespace
+		NSString *name = [[alertView textFieldAtIndex:0].text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+		
+		if(name.length && ![name isEqualToString:playlist.name]){
+			
+			playlist.name = name;
+			[[PlaylistAPI api] savePlaylist:playlist callback:^(NSArray *playlists) {
+				NSLog(@"AOK");
+			}];
+			
+			[self.tableView reloadData];
+		}
 		
 	}
 }

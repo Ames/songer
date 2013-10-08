@@ -25,7 +25,6 @@
 		9898BC3A17FB69D40052495C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9898BC3917FB69D40052495C /* main.m */; };
 		9898BC3E17FB69D40052495C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9898BC3D17FB69D40052495C /* AppDelegate.m */; };
 		9898BC4117FB69D40052495C /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9898BC3F17FB69D40052495C /* Main_iPhone.storyboard */; };
-		9898BC4417FB69D40052495C /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9898BC4217FB69D40052495C /* Main_iPad.storyboard */; };
 		9898BC4717FB69D40052495C /* PlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9898BC4617FB69D40052495C /* PlaylistViewController.m */; };
 		9898BC4C17FB69D40052495C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9898BC4B17FB69D40052495C /* Images.xcassets */; };
 		9898BC5317FB69D50052495C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9898BC5217FB69D50052495C /* XCTest.framework */; };
@@ -80,7 +79,6 @@
 		9898BC3C17FB69D40052495C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9898BC3D17FB69D40052495C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9898BC4017FB69D40052495C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		9898BC4317FB69D40052495C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		9898BC4517FB69D40052495C /* PlaylistViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaylistViewController.h; sourceTree = "<group>"; };
 		9898BC4617FB69D40052495C /* PlaylistViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaylistViewController.m; sourceTree = "<group>"; };
 		9898BC4B17FB69D40052495C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -101,8 +99,8 @@
 		9898BC7817FC63690052495C /* ResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultViewController.m; sourceTree = "<group>"; };
 		9898BC7A17FC73A70052495C /* SongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongViewController.h; sourceTree = "<group>"; };
 		9898BC7B17FC73A70052495C /* SongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongViewController.m; sourceTree = "<group>"; };
-		98C3FC4B180366DB00019DE4 /* libPods-SDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libPods-SDWebImage.a"; path = "Pods/build/Debug-iphoneos/libPods-SDWebImage.a"; sourceTree = "<group>"; };
-		98C3FC4D1803683D00019DE4 /* libPods-SDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libPods-SDWebImage.a"; path = "Pods/build/Release-iphoneos/libPods-SDWebImage.a"; sourceTree = "<group>"; };
+		98C3FC4B180366DB00019DE4 /* libPods-SDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-SDWebImage.a"; path = "Pods/build/Debug-iphoneos/libPods-SDWebImage.a"; sourceTree = "<group>"; };
+		98C3FC4D1803683D00019DE4 /* libPods-SDWebImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-SDWebImage.a"; path = "Pods/build/Release-iphoneos/libPods-SDWebImage.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,7 +186,6 @@
 				9816772517FCB47900BFE87F /* PlaylistAPI.h */,
 				9816772617FCB47900BFE87F /* PlaylistAPI.m */,
 				9898BC3F17FB69D40052495C /* Main_iPhone.storyboard */,
-				9898BC4217FB69D40052495C /* Main_iPad.storyboard */,
 				9898BC7A17FC73A70052495C /* SongViewController.h */,
 				9898BC7B17FC73A70052495C /* SongViewController.m */,
 				9898BC4517FB69D40052495C /* PlaylistViewController.h */,
@@ -288,6 +285,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Ames Bielenberg";
 				TargetAttributes = {
+					9898BC2917FB69D40052495C = {
+						DevelopmentTeam = 55J3TNXSH9;
+					};
 					9898BC5017FB69D50052495C = {
 						TestTargetID = 9898BC2917FB69D40052495C;
 					};
@@ -317,7 +317,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9898BC4417FB69D40052495C /* Main_iPad.storyboard in Resources */,
 				9898BC4C17FB69D40052495C /* Images.xcassets in Resources */,
 				9898BC4117FB69D40052495C /* Main_iPhone.storyboard in Resources */,
 				9898BC3817FB69D40052495C /* InfoPlist.strings in Resources */,
@@ -425,14 +424,6 @@
 			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
-		9898BC4217FB69D40052495C /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9898BC4317FB69D40052495C /* Base */,
-			);
-			name = Main_iPad.storyboard;
-			sourceTree = "<group>";
-		};
 		9898BC5B17FB69D50052495C /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -525,11 +516,14 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Playlist/Playlist-Prefix.pch";
 				INFOPLIST_FILE = "Playlist/Playlist-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = Songer;
+				PROVISIONING_PROFILE = "654DC031-CABA-49B3-865A-EB4B4A81D765";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -542,11 +536,14 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ames Bielenberg (55J3TNXSH9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ames Bielenberg (55J3TNXSH9)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Playlist/Playlist-Prefix.pch";
 				INFOPLIST_FILE = "Playlist/Playlist-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = Songer;
+				PROVISIONING_PROFILE = "10FAF183-60B2-4B14-BF30-3D5E4A6D46E9";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

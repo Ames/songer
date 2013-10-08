@@ -67,7 +67,7 @@
 	
 	
 	[[PlaylistAPI api] addSong:song callback:^(Playlist *playlist) {
-		NSLog(@"added.");
+		//NSLog(@"added.");
 	}];
 	
 	// woo animation
@@ -130,7 +130,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 		
 		[[PlaylistAPI api] deleteSong:[playlist getSongAtIndex:indexPath.row] callback:^(Playlist *playlist) {
-			NSLog(@"deleted.");
+			//NSLog(@"deleted.");
 		}];
 		
 		[playlist removeSongAtIndex:indexPath.row];

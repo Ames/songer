@@ -46,6 +46,9 @@
 
 -(void)getPlaylists:(void(^)(NSArray *playlists))callback;
 -(void)addPlaylist:(Playlist *)playlist callback:(void(^)(NSArray *playlists))callback;
+// for rename
+-(void)savePlaylist:(Playlist *)playlist callback:(void(^)(NSArray *playlists))callback;
+
 -(void)deletePlaylist:(Playlist *)playlist callback:(void(^)(NSArray *playlists))callback;
 
 -(void)loadPlaylist:(Playlist *)playlist callback:(void(^)(Playlist *playlist))callback;

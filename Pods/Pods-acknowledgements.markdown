@@ -850,6 +850,15 @@ THE SOFTWARE.
    limitations under the License.
 
 
+## TestFlightSDK
+
+All text and design is copyright © 2010-2013 TestFlight App, Inc.
+
+All rights reserved.
+
+https://testflightapp.com/tos/
+
+
 ## TransitionKit
 
 

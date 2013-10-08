@@ -16,11 +16,8 @@ RKObjectManager *manager;
 -(id)init{
 	self = [super init];
 	
-	// init stuff
-	
-	
 	manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:[Settings get:@"ApiURL"]]];
-	
+
 	
 	RKObjectMapping *songMapping = [RKObjectMapping mappingForClass:[Song class]];
 	[songMapping addAttributeMappingsFromDictionary:
@@ -35,13 +32,7 @@ RKObjectManager *manager;
 	   @"id":          @"songId",
 	   @"playlist_id": @"playlistId",
 	   }];
-	
-	
-	
-	[manager addResponseDescriptor: [RKResponseDescriptor responseDescriptorWithMapping:songMapping method:RKRequestMethodAny pathPattern:@"playlists/:playlistId/songs/:songId" keyPath:nil statusCodes:nil]];
-	
 
-	
 	RKObjectMapping *songRequestMapping = [RKObjectMapping requestMapping];
 	[songRequestMapping addAttributeMappingsFromDictionary:
 	 @{
@@ -56,47 +47,74 @@ RKObjectManager *manager;
 	   @"playlistId":  @"playlist[id]",
 	   }];
 	
-	
-	[manager addRequestDescriptor:[RKRequestDescriptor requestDescriptorWithMapping:songRequestMapping objectClass:[Song class] rootKeyPath:nil method:RKRequestMethodAny]];
-	
-	
-	
-	
 	RKObjectMapping *playlistMapping = [RKObjectMapping mappingForClass:[Playlist class]];
 	[playlistMapping addAttributeMappingsFromDictionary:
 	 @{@"id": @"playlistId",
 	   @"name":@"name",
 	   }];
 	
-	[manager addResponseDescriptor: [RKResponseDescriptor responseDescriptorWithMapping:playlistMapping method:RKRequestMethodAny pathPattern:@"playlists" keyPath:nil statusCodes:nil]];
-	
-	[manager addResponseDescriptor: [RKResponseDescriptor responseDescriptorWithMapping:playlistMapping method:RKRequestMethodAny pathPattern:@"playlists/:playlistId" keyPath:nil statusCodes:nil]];
-	
-	
-	
 	RKObjectMapping* playlistRequestMapping = [RKObjectMapping requestMapping ];
 	[playlistRequestMapping addAttributeMappingsFromDictionary:
 	 @{@"playlistId": @"playlist[id]",
 	   @"name":@"playlist[name]",
 	   }];
-
-	[manager addRequestDescriptor:[RKRequestDescriptor requestDescriptorWithMapping:playlistRequestMapping objectClass:[Playlist class] rootKeyPath:nil method:RKRequestMethodPOST]];
 	
 	
-	[[RKObjectManager sharedManager].router.routeSet addRoute:[RKRoute routeWithClass:[Song class] pathPattern:@"playlists/:playlistId/songs/:songId" method:RKRequestMethodGET|RKRequestMethodDELETE]];
+	[manager addRequestDescriptorsFromArray:
+	 @[[RKRequestDescriptor requestDescriptorWithMapping:songRequestMapping
+											 objectClass:[Song class]
+											 rootKeyPath:nil
+												  method:RKRequestMethodAny],
+	   [RKRequestDescriptor requestDescriptorWithMapping:playlistRequestMapping
+											 objectClass:[Playlist class]
+											 rootKeyPath:nil
+												  method:RKRequestMethodPOST|RKRequestMethodPUT],
+	   ]];
 	
-	[[RKObjectManager sharedManager].router.routeSet addRoute:[RKRoute routeWithClass:[Song class] pathPattern:@"playlists/:playlistId/songs" method:RKRequestMethodPOST]];
+	[manager addResponseDescriptorsFromArray:
+	 @[[RKResponseDescriptor responseDescriptorWithMapping:playlistMapping
+													method:RKRequestMethodGET
+											   pathPattern:@"playlists"
+												   keyPath:nil
+											   statusCodes:nil],
+	   
+	   [RKResponseDescriptor responseDescriptorWithMapping:playlistMapping
+													method:RKRequestMethodAny
+											   pathPattern:@"playlists/:playlistId"
+												   keyPath:nil
+											   statusCodes:nil],
+	   
+	   [RKResponseDescriptor responseDescriptorWithMapping:songMapping
+													method:RKRequestMethodAny
+											   pathPattern:@"playlists/:playlistId/songs/:songId"
+												   keyPath:nil
+											   statusCodes:nil],
+	   ]];
 	
-
 	
-	[[RKObjectManager sharedManager].router.routeSet addRoute:[RKRoute routeWithClass:[Playlist class] pathPattern:@"playlists/:playlistId" method:RKRequestMethodGET|RKRequestMethodDELETE]];
+	[[RKObjectManager sharedManager].router.routeSet addRoutes:
+	 @[[RKRoute routeWithClass:[Song class]
+				   pathPattern:@"playlists/:playlistId/songs/:songId"
+						method:RKRequestMethodGET|RKRequestMethodDELETE],
+	   
+	   [RKRoute routeWithClass:[Song class]
+				   pathPattern:@"playlists/:playlistId/songs"
+						method:RKRequestMethodPOST],
+	   
+	   [RKRoute routeWithClass:[Playlist class]
+				   pathPattern:@"playlists/:playlistId"
+						method:RKRequestMethodGET|RKRequestMethodDELETE|RKRequestMethodPUT],
+	   
+	   [RKRoute routeWithClass:[Playlist class]
+				   pathPattern:@"playlists"
+						method:RKRequestMethodPOST],
+	   ]];
 	
-	[[RKObjectManager sharedManager].router.routeSet addRoute:[RKRoute routeWithClass:[Playlist class] pathPattern:@"playlists" method:RKRequestMethodPOST]];
-
-
 	
-	[playlistMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"songs" toKeyPath:@"playlist" withMapping:songMapping]];
-	
+	[playlistMapping addPropertyMapping:
+	 [RKRelationshipMapping relationshipMappingFromKeyPath:@"songs"
+												 toKeyPath:@"playlist"
+											   withMapping:songMapping]];
 	
 
 	
@@ -140,7 +158,7 @@ RKObjectManager *manager;
 		
 		callback([mappingResult array][0]);
 		
-		NSLog(@"%@",[mappingResult array]);
+		//NSLog(@"%@",[mappingResult array]);
 	} failure:^(RKObjectRequestOperation *operation, NSError *error) {
 		NSLog(@"%@",error);
 	}];
@@ -149,18 +167,27 @@ RKObjectManager *manager;
 -(void)addPlaylist:(Playlist *)playlist callback:(void (^)(NSArray *))callback{
 	
 	[manager postObject:playlist path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-		NSLog(@"%@",mappingResult);
+		callback([mappingResult array]);
 	} failure:^(RKObjectRequestOperation *operation, NSError *error) {
 		NSLog(@"%@",error);
 	}];
 	
 }
 
+-(void)savePlaylist:(Playlist *)playlist callback:(void(^)(NSArray *playlists))callback{
+	
+	[manager putObject:playlist path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+		//NSLog(@"%@",mappingResult);
+	} failure:^(RKObjectRequestOperation *operation, NSError *error) {
+		NSLog(@"%@",error);
+	}];
+}
+
 
 -(void)deletePlaylist:(Playlist *)playlist callback:(void(^)(NSArray *playlists))callback{
 	
 	[manager deleteObject:playlist path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-		NSLog(@"%@",mappingResult);
+		//NSLog(@"%@",mappingResult);
 	} failure:^(RKObjectRequestOperation *operation, NSError *error) {
 		NSLog(@"%@",error);
 	}];
@@ -169,7 +196,7 @@ RKObjectManager *manager;
 -(void)addSong:(Song *)song callback:(void (^)(Playlist *))callback{
 	
 	[manager postObject:song path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-		NSLog(@"%@",mappingResult);
+		//NSLog(@"%@",mappingResult);
 	} failure:^(RKObjectRequestOperation *operation, NSError *error) {
 		NSLog(@"%@",error);
 	}];
@@ -178,7 +205,7 @@ RKObjectManager *manager;
 
 -(void)deleteSong:(Song *)song callback:(void (^)(Playlist *))callback{
 	[manager deleteObject:song path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-		NSLog(@"%@",mappingResult);
+		//NSLog(@"%@",mappingResult);
 	} failure:^(RKObjectRequestOperation *operation, NSError *error) {
 		NSLog(@"%@",error);
 	}];

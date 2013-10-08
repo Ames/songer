@@ -7,11 +7,14 @@
 //
 
 #import "AppDelegate.h"
+#import <TestFlight.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	[TestFlight takeOff:@"a302ef18-aeb3-4ced-adba-84f404e5b4bb"];
+	
     // Override point for customization after application launch.
 	if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
 	    UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;

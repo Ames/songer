@@ -25,11 +25,13 @@ PODS:
     - SDWebImage/Core
   - SDWebImage/Core (3.4)
   - SOCKit (1.1)
+  - TestFlightSDK (2.0.2)
   - TransitionKit (1.1.1)
 
 DEPENDENCIES:
   - RestKit (~> 0.21.0)
   - SDWebImage (~> 3.4)
+  - TestFlightSDK (~> 2.0.2)
 
 SPEC CHECKSUMS:
   AFNetworking: 0700ec7a58c36ad217173e167f6e4df7270df66b
@@ -38,6 +40,7 @@ SPEC CHECKSUMS:
   RKValueTransformers: 01dc043fd853f6e40459b2e732dff545298a0f91
   SDWebImage: 366188f04c019bfd712d45e3b36aa52070f4abd8
   SOCKit: 2f3bc4d07910de12dcc202815e07db68a3802581
+  TestFlightSDK: 0811097c1f831afb71f68ccd07ae71325cb90f43
   TransitionKit: d0e3344aac92991395d4c2e72d9c5a8ceeb12910
 
 COCOAPODS: 0.25.0

@@ -34,6 +34,11 @@
 			<key>orderHint</key>
 			<integer>6</integer>
 		</dict>
+		<key>Pods-TestFlightSDK.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
 		<key>Pods-TransitionKit.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -52,12 +57,37 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>253E17147B154F2D826188E9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>33B33D3E7D564BF08AE98140</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>44F908B948CE4AC0B98DAD46</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>490E2B2E43484E188F3F3AEA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>570E21FDAE8A4C0BADE3EE13</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5FE66D5CF60B4F328E55AA64</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6EEEE0205A7145C887A2890E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -73,6 +103,11 @@
 			<true/>
 		</dict>
 		<key>9EE2AEE105FB4DECA5612322</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AC58007A75C94559A9AAFCC8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,7 +147,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>E2E6FC875E0D4A5A8B1B6CD3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>E3A7580EE75044AB9DDA5424</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E726FF58510E4D7C8A485009</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E9AFCDD6FE9441CAAE5D910D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
