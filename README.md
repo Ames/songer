@@ -12,5 +12,5 @@ Playlists are synced to a server. see: https://github.com/mserran2/songer
 Songer targets iphone/ipod running iOS6 and iOS7.
 
 Two frameworks are used:
-	RestKit  -  for interacting with the REST api
-	SDWebImage  -  for loading images from remote servers.	
+ - RestKit  -  for interacting with the REST api
+ - SDWebImage  -  for loading images from remote servers.	
