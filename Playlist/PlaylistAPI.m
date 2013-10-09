@@ -16,6 +16,8 @@ RKObjectManager *manager;
 -(id)init{
 	self = [super init];
 	
+	RKLogConfigureByName("*",RKLogLevelError);
+	
 	manager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:[Settings get:@"ApiURL"]]];
 
 	
@@ -73,7 +75,7 @@ RKObjectManager *manager;
 	
 	[manager addResponseDescriptorsFromArray:
 	 @[[RKResponseDescriptor responseDescriptorWithMapping:playlistMapping
-													method:RKRequestMethodGET
+													method:RKRequestMethodAny
 											   pathPattern:@"playlists"
 												   keyPath:nil
 											   statusCodes:nil],
@@ -87,6 +89,12 @@ RKObjectManager *manager;
 	   [RKResponseDescriptor responseDescriptorWithMapping:songMapping
 													method:RKRequestMethodAny
 											   pathPattern:@"playlists/:playlistId/songs/:songId"
+												   keyPath:nil
+											   statusCodes:nil],
+	   
+	   [RKResponseDescriptor responseDescriptorWithMapping:songMapping
+													method:RKRequestMethodPOST
+											   pathPattern:@"playlists/:playlistId/songs"
 												   keyPath:nil
 											   statusCodes:nil],
 	   ]];
@@ -121,6 +129,7 @@ RKObjectManager *manager;
 	return self;
 }
 
+
 // singleton magic
 +(PlaylistAPI *)api{
 	static PlaylistAPI *thePlaylistAPI;
@@ -137,78 +146,99 @@ RKObjectManager *manager;
 
 -(void)getPlaylists:(void (^)(NSArray *))callback{
 	
-
-	[manager getObjectsAtPath:@"playlists" parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-		
-		callback([mappingResult array]);
-		
-	} failure:^(RKObjectRequestOperation *operation, NSError *error) {
-		NSLog(@"%@",error);
-		//callback(nil);
-	}];
+	[manager getObjectsAtPath:@"playlists"
+				   parameters:nil
+					  success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+						  callback([mappingResult array]);
+					  } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+						  callback(nil);
+					  }
+	 ];
 }
 
 
 -(void)loadPlaylist:(Playlist *)playlist callback:(void (^)(Playlist *))callback{
 	
-	[manager getObject:playlist path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-		
-		playlist.loaded = TRUE;
-		// assume [mappingResult array][0] == playlist
-		
-		callback([mappingResult array][0]);
-		
-		//NSLog(@"%@",[mappingResult array]);
-	} failure:^(RKObjectRequestOperation *operation, NSError *error) {
-		NSLog(@"%@",error);
-	}];
+	[manager getObject:playlist
+				  path:nil
+			parameters:nil
+			   success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+				   
+				   playlist.loaded = TRUE;
+				   // assume [mappingResult array][0] == playlist
+				   
+				   callback([mappingResult array][0]);
+				   
+			   } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+				   
+				   
+				   NSInteger status = operation.HTTPRequestOperation.response.statusCode;
+				   if(status==404){
+					   
+					   // the playlist is gone.
+					   NSLog(@"That playlist is gone bro.");
+					   // we should delete our copy and make appropriate view changes.
+					   
+				   }
+				   callback(nil);
+			   }
+	 ];
 }
 
 -(void)addPlaylist:(Playlist *)playlist callback:(void (^)(NSArray *))callback{
 	
-	[manager postObject:playlist path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-		callback([mappingResult array]);
-	} failure:^(RKObjectRequestOperation *operation, NSError *error) {
-		NSLog(@"%@",error);
-	}];
+	[manager postObject:playlist
+				   path:nil
+			 parameters:nil
+				success: ^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+					callback([mappingResult array]);
+					
+				}failure: ^(RKObjectRequestOperation *operation, NSError *error) {
+					callback(nil);
+				}
+	 ];
 	
 }
 
 -(void)savePlaylist:(Playlist *)playlist callback:(void(^)(NSArray *playlists))callback{
 	
-	[manager putObject:playlist path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-		//NSLog(@"%@",mappingResult);
-	} failure:^(RKObjectRequestOperation *operation, NSError *error) {
-		NSLog(@"%@",error);
-	}];
+	// they could all look like this; we're not really using most of the callbacks,
+	//   but we probably should be for things like error handling
+	
+	[manager putObject:playlist
+				  path:nil
+			parameters:nil
+			   success:nil
+			   failure:nil];
 }
 
 
 -(void)deletePlaylist:(Playlist *)playlist callback:(void(^)(NSArray *playlists))callback{
-	
-	[manager deleteObject:playlist path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-		//NSLog(@"%@",mappingResult);
-	} failure:^(RKObjectRequestOperation *operation, NSError *error) {
-		NSLog(@"%@",error);
-	}];
+
+	[manager deleteObject:playlist
+					 path:nil
+			   parameters:nil
+				  success:nil
+				  failure:nil];
 }
 
 -(void)addSong:(Song *)song callback:(void (^)(Playlist *))callback{
 	
-	[manager postObject:song path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-		//NSLog(@"%@",mappingResult);
-	} failure:^(RKObjectRequestOperation *operation, NSError *error) {
-		NSLog(@"%@",error);
-	}];
+	[manager postObject:song
+				   path:nil
+			 parameters:nil
+				success:nil
+				failure:nil];
 	
 }
 
 -(void)deleteSong:(Song *)song callback:(void (^)(Playlist *))callback{
-	[manager deleteObject:song path:nil parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-		//NSLog(@"%@",mappingResult);
-	} failure:^(RKObjectRequestOperation *operation, NSError *error) {
-		NSLog(@"%@",error);
-	}];
+	
+	[manager deleteObject:song
+					 path:nil
+			   parameters:nil
+				  success:nil
+				  failure:nil];
 }
 
 

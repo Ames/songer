@@ -316,7 +316,7 @@
 			
 			playlist.name = name;
 			[[PlaylistAPI api] savePlaylist:playlist callback:^(NSArray *playlists) {
-				NSLog(@"AOK");
+				//NSLog(@"AOK");
 			}];
 			
 			[self.tableView reloadData];
@@ -337,7 +337,7 @@
 	
 	
 	[[PlaylistAPI api] addPlaylist:playlist callback:^(NSArray *playlists) {
-		NSLog(@"kk");
+		//NSLog(@"kk");
 	}];
 }
 

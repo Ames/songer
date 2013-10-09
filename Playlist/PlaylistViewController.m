@@ -46,8 +46,10 @@
 }
 
 - (void)refresh{
-	[[PlaylistAPI api] loadPlaylist:playlist callback:^(Playlist *playlist) {
+	[[PlaylistAPI api] loadPlaylist:playlist callback:^(Playlist *newPlaylist) {
+		// assert newPlaylist == playlist
 		[self.tableView reloadData];
+		self.navigationItem.title = playlist.name;
 		[self.refreshControl endRefreshing];
 	}];
 }

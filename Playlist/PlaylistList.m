@@ -31,9 +31,9 @@
 
 // returns index of added playlist
 -(NSInteger)addPlaylist:(Playlist *)playlist{
-	[list insertObject:playlist atIndex:0];
+	[list insertObject:playlist atIndex:list.count];
 	
-	[self sortByName];
+	//[self sortByName]; meh
 	
 	return [list indexOfObject:playlist];
 }
